@@ -1,14 +1,7 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
-}
+#[path ="opay_client.rs"]
+pub mod client;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+#[path ="client/mod.rs"]
+mod endpoints;
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
-}
+pub mod opay;
