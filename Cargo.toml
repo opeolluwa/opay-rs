@@ -2,5 +2,15 @@
 name = "opay"
 version = "0.1.0"
 edition = "2021"
+rust-version = "1.81.0"
+
+[lib]
+name = "opay_rs"
+path = "src/lib.rs"
 
 [dependencies]
+serde = { version = "1.0.210", features = ["derive"] }
+
+[dev-dependencies]
+dotenv = "0.15.0"
+tokio = { version = "1.40.0", features = ["full"] }
