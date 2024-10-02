@@ -5,7 +5,7 @@
 use serde::{Deserialize, Serialize};
 
 /// the environment helps decide if the application is running in the development env or in the production
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, Serialize, Deserialize)]
 pub enum Environment {
     Production,
     Development,
@@ -42,8 +42,11 @@ pub struct PublicKey(String);
 impl PublicKey {
     /// crate a new PublicKey
     ///
-    /// #example
-    /// let public_key = PublicKey::from("pubMYB7i4ojZGQVkyEUoKaDrGmb0kVcDQzhTJe1jFnlqUHIm")
+    /// ### Example
+    /// ```rust
+    /// use opay::PublicKey
+    /// let public_key = PublicKey::from("pub_MYB7i4ojZGQVkyEUoKaDrGmb0kVcDQzhTJe1jFnlqUHIm")
+    /// ```
     ///
     pub fn from(value: &str) -> Self {
         PublicKey(value.to_string())
@@ -54,3 +57,13 @@ impl PublicKey {
         &self.0
     }
 }
+
+
+pub struct Country {}
+
+pub type Countries = Vec<Country>;
+
+
+pub struct Bank;
+
+pub type BankList = Vec<Bank>;

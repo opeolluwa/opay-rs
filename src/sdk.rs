@@ -1,11 +1,17 @@
 //! contains the core SDK
 
+use serde::{Deserialize, Serialize};
+
 use crate::{
-    endpoints::{checkout::CheckoutRequest, inquire::InquireRequests, transfer::TransferRequests},
+    client_requests::{
+        checkout::CheckoutRequest, inquiry::InquireRequests, transfer::TransferRequests,
+    },
     opay::{Environment, MerchantId, PublicKey},
 };
 
-pub struct Opay {
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct OpayClient {
     /// the env in which the application runs see
     pub environment: Environment,
     /// the public key obtainable from dashboard
@@ -16,7 +22,7 @@ pub struct Opay {
     api_base_url: String,
 }
 
-impl Opay {
+impl OpayClient {
     pub fn new(environment: Environment, public_key: PublicKey, merchant_id: MerchantId) -> Self {
         Self {
             environment,
@@ -28,14 +34,22 @@ impl Opay {
 
     fn base_url(environment: Environment) -> String {
         match environment {
-            Environment::Development => "dev".to_string(),
-            Environment::Production => "prod url".to_string(),
+            Environment::Development => "http://sandbox-cashierapi.opayweb.com/api/v3".to_string(),
+            Environment::Production => "https://cashierapi.opayweb.com/api/v3".to_string(),
         }
     }
 }
 
-impl TransferRequests for Opay {}
+impl TransferRequests for OpayClient {
+    fn get_countries(&self) -> Result<crate::opay::Countries, crate::error::OpayClientError> {
+        todo!()
+    }
 
-impl CheckoutRequest for Opay {}
+    fn get_bank_list(&self) -> Result<crate::opay::BankList, crate::error::OpayClientError> {
+        todo!()
+    }
+}
 
-impl InquireRequests for Opay {}
+impl CheckoutRequest for OpayClient {}
+
+impl InquireRequests for OpayClient {}

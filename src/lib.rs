@@ -1,7 +1,11 @@
-#[path ="opay_client.rs"]
-pub mod client;
+#[path ="sdk.rs"]
+pub mod opay_client;
 
-#[path ="client/mod.rs"]
-mod endpoints;
+#[path ="requests/mod.rs"]
+mod client_requests;
 
 pub mod opay;
+
+pub mod error;
+
+use client_requests::*;
