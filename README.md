@@ -1,4 +1,4 @@
-# Opay
+# Opay Rust SDK
 
 - [Description](#description)
 - [Getting Started](#getting-started)
