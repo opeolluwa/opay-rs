@@ -1,7 +1,8 @@
 use opay_rs::{
-    opay_client::OpayClient,
     error::OpayClientError,
     opay::{Environment, MerchantId, PublicKey},
+    opay_client::OpayClient,
+    prelude::*,
 };
 
 #[tokio::main]
