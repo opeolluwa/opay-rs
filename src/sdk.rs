@@ -9,7 +9,6 @@ use crate::{
     opay::{Environment, MerchantId, PublicKey},
 };
 
-
 #[derive(Debug, Serialize, Deserialize)]
 pub struct OpayClient {
     /// the env in which the application runs see
@@ -41,15 +40,53 @@ impl OpayClient {
 }
 
 impl TransferRequests for OpayClient {
-    fn get_countries(&self) -> Result<crate::opay::Countries, crate::error::OpayClientError> {
+    async fn get_countries(&self) -> Result<crate::opay::Countries, crate::error::OpayClientError> {
         todo!()
     }
 
-    fn get_bank_list(&self) -> Result<crate::opay::BankList, crate::error::OpayClientError> {
+    async fn get_bank_list(&self) -> Result<crate::opay::BankList, crate::error::OpayClientError> {
+        todo!()
+    }
+
+    async fn transfer_to_opay_wallet(
+    ) -> Result<crate::TransactionResponse, crate::error::OpayClientError> {
+        todo!()
+    }
+
+    async fn transfer_to_other_banks(
+    ) -> Result<crate::TransactionResponse, crate::error::OpayClientError> {
+        todo!()
+    }
+
+    async fn query_wallet_transfer_status(
+    ) -> Result<crate::TransactionResponse, crate::error::OpayClientError> {
+        todo!()
+    }
+
+    async fn query_bank_transfer_status(
+    ) -> Result<crate::TransactionResponse, crate::error::OpayClientError> {
         todo!()
     }
 }
 
 impl CheckoutRequest for OpayClient {}
 
-impl InquireRequests for OpayClient {}
+impl InquireRequests for OpayClient {
+    async fn query_wallet_balance() -> Result<serde_value::Value, crate::error::OpayClientError> {
+        todo!()
+    }
+
+    async fn validate_bank_account() -> Result<serde_value::Value, crate::error::OpayClientError> {
+        todo!()
+    }
+
+    async fn validate_opay_user_account(
+    ) -> Result<serde_value::Value, crate::error::OpayClientError> {
+        todo!()
+    }
+
+    async fn validate_opay_merchant_account(
+    ) -> Result<serde_value::Value, crate::error::OpayClientError> {
+        todo!()
+    }
+}
