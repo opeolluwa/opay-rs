@@ -1,8 +1,7 @@
- # Opay
+# Opay
 
 - [Description](#description)
 - [Getting Started](#getting-started)
-  - [Dependencies](#dependencies)
   - [Installing](#installing)
   - [Executing program](#executing-program)
 - [Documentation](#documentation)
@@ -18,28 +17,42 @@ Opay SDK in the Rust Programming language
 
 ## Getting Started
 
-### Dependencies
-
-- Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-- ex. Windows 10
+To get started create a account from https://merchant.opaycheckout.com/signup or
+login to existing account
 
 ### Installing
 
-- How/where to download your program
-- Any modifications needed to be made to files/folders
+```sh
+cargo add opay_rs tokio -F full 
+```
 
 ### Executing program
 
-- How to run the program
-- Step-by-step bullets
+```rust
+use opay_rs::{
+    opay_client::OpayClient,
+    error::OpayClientError,
+    opay::{Environment, MerchantId, PublicKey},
+};
 
-```
-code blocks for commands
+#[tokio::main]
+async fn main() -> Result<(), OpayClientError> {
+    let env = Environment::Development; // Environment::Default
+    let public_key = PublicKey::from(&std::env::var("OPAY_PUBLIC_KEY").ok().unwrap());
+    let merchant_id = MerchantId::from(&std::env::var("OPAY_MERCHANT_ID").ok().unwrap());
+    let opay_client = OpayClient::new(env, public_key, merchant_id);
+
+    let bank_list = opay_client.get_bank_list().await;
+
+    Ok(())
+}
+
 ```
 
 ## Documentation
 
-Describe any special instructions that are necessary to install a software package on your computer (if applicable).
+Describe any special instructions that are necessary to install a software
+package on your computer (if applicable).
 
 ## Help
 
@@ -53,7 +66,7 @@ command to run if program contains helper info
 
 Contributors names and contact info
 
-ex. Dominique Pizzie  
+ex. Dominique Pizzie\
 ex. [@DomPizzie](https://twitter.com/dompizzie)
 
 ## Version History
@@ -66,9 +79,9 @@ ex. [@DomPizzie](https://twitter.com/dompizzie)
 
 ## License
 
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
+This project is licensed under the [NAME HERE] License - see the LICENSE.md file
+for details
 
 ## Acknowledgments
 
 Inspiration, code snippets, etc.
-        
